@@ -16,4 +16,10 @@ func main() {
 	fmt.Printf("We have totol of %v and we have %v available\n", conferenceTickets, remainingTickets)
 	fmt.Println("Get your tickets here to attend")
 
+	var userName string
+	var userTickets int
+	userName = "Tom"
+	userTickets = 2
+	fmt.Printf("User %v booked %v tickets\n", userName, userTickets)
+
 }
