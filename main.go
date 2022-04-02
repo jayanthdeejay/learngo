@@ -12,6 +12,8 @@ func main() {
 	const conferenceTickets = 50
 	var remainingTickets = 50
 
+	fmt.Printf("conferenceName is of type: %T, conferenceTickets is of type: %T, remainingTickets is of type: %T\n", conferenceName, conferenceTickets, remainingTickets)
+
 	fmt.Printf("Welcome to %v booking application\n", conferenceName)
 	fmt.Printf("We have totol of %v and we have %v available\n", conferenceTickets, remainingTickets)
 	fmt.Println("Get your tickets here to attend")
