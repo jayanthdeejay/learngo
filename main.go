@@ -38,6 +38,8 @@ func main() {
 
 	fmt.Printf("The whole array: %v\n", bookings)
 	fmt.Printf("The first booking: %v\n", bookings[0])
+	fmt.Printf("Array type: %T\n", bookings)
+	fmt.Printf("Array size: %v\n", len(bookings))
 
 	fmt.Printf("Thank you %v %v for booking %v tickets. Tickets will be sent to %v\n", firstName, lastName, userTickets, userEmail)
 	fmt.Printf("%v tickets are remaining for %v\n", remainingTickets, conferenceName)
