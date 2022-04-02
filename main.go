@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 // I'm following a youtube tutorial to develop a basic booking application
@@ -45,6 +46,15 @@ func main() {
 		fmt.Printf("Thank you %v %v for booking %v tickets. Tickets will be sent to %v\n", firstName, lastName, userTickets, userEmail)
 		fmt.Printf("%v tickets are remaining for %v\n", remainingTickets, conferenceName)
 
-		fmt.Printf("Bookings list: %v\n", bookings)
+		firstNames := []string{}
+		// range returns index and the corresponding data from a slice
+		// if your code doesn't require the index variable (you can use any name for your index of course)
+		// you can instead use underscore(_) so that the compiler doesn't complain about an unused variable
+		for _, booking := range bookings {
+			names := strings.Fields(booking)
+			firstNames = append(firstNames, names[0])
+		}
+
+		fmt.Printf("The first names of the bookings are: %v\n", firstNames)
 	}
 }
