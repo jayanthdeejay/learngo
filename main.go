@@ -15,7 +15,7 @@ func main() {
 	// Following can be used to declare on array
 	// var bookings = [50]string{}
 	// An alternate declaration
-	var bookings [50]string
+	var bookings []string
 
 	fmt.Printf("Welcome to %v booking application\n", conferenceName)
 	fmt.Printf("We have totol of %v and we have %v available\n", conferenceTickets, remainingTickets)
@@ -34,12 +34,12 @@ func main() {
 	fmt.Print("Enter number of tickets: ")
 	fmt.Scan(&userTickets)
 	remainingTickets = remainingTickets - userTickets
-	bookings[0] = firstName + " " + lastName
+	bookings = append(bookings, firstName+" "+lastName)
 
-	fmt.Printf("The whole array: %v\n", bookings)
+	fmt.Printf("The whole slice: %v\n", bookings)
 	fmt.Printf("The first booking: %v\n", bookings[0])
-	fmt.Printf("Array type: %T\n", bookings)
-	fmt.Printf("Array size: %v\n", len(bookings))
+	fmt.Printf("Slice type: %T\n", bookings)
+	fmt.Printf("Slice size: %v\n", len(bookings))
 
 	fmt.Printf("Thank you %v %v for booking %v tickets. Tickets will be sent to %v\n", firstName, lastName, userTickets, userEmail)
 	fmt.Printf("%v tickets are remaining for %v\n", remainingTickets, conferenceName)
