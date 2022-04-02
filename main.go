@@ -8,9 +8,9 @@ import (
 // https://www.youtube.com/watch?v=yyUHQIec83I
 
 func main() {
-	var conferenceName = "Go conference"
-	const conferenceTickets = 50
-	var remainingTickets = 50
+	var conferenceName string = "Go conference"
+	const conferenceTickets int = 50
+	var remainingTickets uint = 50
 
 	fmt.Printf("conferenceName is of type: %T, conferenceTickets is of type: %T, remainingTickets is of type: %T\n", conferenceName, conferenceTickets, remainingTickets)
 
