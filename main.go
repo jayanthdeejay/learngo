@@ -32,6 +32,7 @@ func main() {
 		var lastName string
 		var userEmail string
 		var userTickets uint
+
 		fmt.Println("Enter your first name: ")
 		fmt.Scan(&firstName)
 		fmt.Println("Enter your last name: ")
@@ -40,6 +41,12 @@ func main() {
 		fmt.Scan(&userEmail)
 		fmt.Println("Enter number of tickets: ")
 		fmt.Scan(&userTickets)
+
+		if userTickets > remainingTickets {
+			fmt.Printf("We only have %v tickets left\n", remainingTickets)
+			continue
+		}
+
 		remainingTickets = remainingTickets - userTickets
 		bookings = append(bookings, firstName+" "+lastName)
 
@@ -48,7 +55,7 @@ func main() {
 
 		firstNames := []string{}
 		// range returns index and the corresponding data from a slice
-		// if your code doesn't require the index variable (you can use any name for your index of course)
+		// if your code doesn't require the index variable (you can use any name for your index and value of course)
 		// you can instead use underscore(_) so that the compiler doesn't complain about an unused variable
 		for _, booking := range bookings {
 			names := strings.Fields(booking)
@@ -56,5 +63,11 @@ func main() {
 		}
 
 		fmt.Printf("The first names of the bookings are: %v\n", firstNames)
+
+		if remainingTickets == 0 {
+			fmt.Printf("The %v is sold out\n", conferenceName)
+			break
+		}
+
 	}
 }
