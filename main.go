@@ -8,7 +8,7 @@ import (
 // https://www.youtube.com/watch?v=yyUHQIec83I
 
 func main() {
-	var conferenceName string = "Go conference"
+	conferenceName := "Go conference"
 	const conferenceTickets int = 50
 	var remainingTickets uint = 50
 
