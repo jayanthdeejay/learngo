@@ -16,9 +16,12 @@ func main() {
 	// var bookings = [50]string{}
 	// An alternate declaration
 	var bookings []string
+	// Alternate slice declarations
+	// bookings := []string
+	// var bookings = []string{}
 
 	fmt.Printf("Welcome to %v booking application\n", conferenceName)
-	fmt.Printf("We have totol of %v and we have %v available\n", conferenceTickets, remainingTickets)
+	fmt.Printf("We have totol of %v tickets and we have %v tickets available\n", conferenceTickets, remainingTickets)
 	fmt.Println("Get your tickets here to attend")
 
 	var firstName string
@@ -36,11 +39,8 @@ func main() {
 	remainingTickets = remainingTickets - userTickets
 	bookings = append(bookings, firstName+" "+lastName)
 
-	fmt.Printf("The whole slice: %v\n", bookings)
-	fmt.Printf("The first booking: %v\n", bookings[0])
-	fmt.Printf("Slice type: %T\n", bookings)
-	fmt.Printf("Slice size: %v\n", len(bookings))
-
 	fmt.Printf("Thank you %v %v for booking %v tickets. Tickets will be sent to %v\n", firstName, lastName, userTickets, userEmail)
 	fmt.Printf("%v tickets are remaining for %v\n", remainingTickets, conferenceName)
+
+	fmt.Printf("Bookings list: %v\n", bookings)
 }
