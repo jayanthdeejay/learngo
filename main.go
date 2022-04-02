@@ -24,23 +24,27 @@ func main() {
 	fmt.Printf("We have totol of %v tickets and we have %v tickets available\n", conferenceTickets, remainingTickets)
 	fmt.Println("Get your tickets here to attend")
 
-	var firstName string
-	var lastName string
-	var userEmail string
-	var userTickets uint
-	fmt.Print("Enter your first name: ")
-	fmt.Scan(&firstName)
-	fmt.Print("Enter your last name: ")
-	fmt.Scan(&lastName)
-	fmt.Print("Enter your email: ")
-	fmt.Scan(&userEmail)
-	fmt.Print("Enter number of tickets: ")
-	fmt.Scan(&userTickets)
-	remainingTickets = remainingTickets - userTickets
-	bookings = append(bookings, firstName+" "+lastName)
+	// Loops introduction. We have just one type of loop in Go. For!
+	// This is an infinite loop
+	for {
+		var firstName string
+		var lastName string
+		var userEmail string
+		var userTickets uint
+		fmt.Println("Enter your first name: ")
+		fmt.Scan(&firstName)
+		fmt.Println("Enter your last name: ")
+		fmt.Scan(&lastName)
+		fmt.Println("Enter your email: ")
+		fmt.Scan(&userEmail)
+		fmt.Println("Enter number of tickets: ")
+		fmt.Scan(&userTickets)
+		remainingTickets = remainingTickets - userTickets
+		bookings = append(bookings, firstName+" "+lastName)
 
-	fmt.Printf("Thank you %v %v for booking %v tickets. Tickets will be sent to %v\n", firstName, lastName, userTickets, userEmail)
-	fmt.Printf("%v tickets are remaining for %v\n", remainingTickets, conferenceName)
+		fmt.Printf("Thank you %v %v for booking %v tickets. Tickets will be sent to %v\n", firstName, lastName, userTickets, userEmail)
+		fmt.Printf("%v tickets are remaining for %v\n", remainingTickets, conferenceName)
 
-	fmt.Printf("Bookings list: %v\n", bookings)
+		fmt.Printf("Bookings list: %v\n", bookings)
+	}
 }
