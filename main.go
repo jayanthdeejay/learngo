@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"learngo/helper"
 	"strings"
 )
 
@@ -29,7 +30,7 @@ func main() {
 	// This is an infinite loop
 	for {
 		firstName, lastName, userEmail, userTickets := getUserInput()
-		isValidName, isValidEmail, isValidUserTickets := validateUserInput(firstName, lastName, userEmail, userTickets)
+		isValidName, isValidEmail, isValidUserTickets := helper.ValidateUserInput(firstName, lastName, userEmail, userTickets, remainingTickets)
 
 		if isValidName && isValidEmail && isValidUserTickets {
 			bookTickets(userTickets, firstName, lastName, userEmail)
