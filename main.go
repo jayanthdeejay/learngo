@@ -26,34 +26,13 @@ func main() {
 	// Loops introduction. We have just one type of loop in Go. For!
 	// This is an infinite loop
 	for {
-		var firstName string
-		var lastName string
-		var userEmail string
-		var userTickets uint
-
-		// Scan can be used to get input from the user
-		// & is an address operator
-		fmt.Println("Enter your first name: ")
-		fmt.Scan(&firstName)
-		fmt.Println("Enter your last name: ")
-		fmt.Scan(&lastName)
-		fmt.Println("Enter your email: ")
-		fmt.Scan(&userEmail)
-		fmt.Println("Enter number of tickets: ")
-		fmt.Scan(&userTickets)
-
-		isValidName := len(firstName) > 1 && len(lastName) > 1
-		isValidEmail := strings.Contains(userEmail, "@")
-		isValidUserTickets := userTickets > 0 && userTickets <= remainingTickets
+		firstName, lastName, userEmail, userTickets := getUserInput()
+		isValidName, isValidEmail, isValidUserTickets := validateUserInput(firstName, lastName, userEmail, userTickets, remainingTickets)
 
 		if isValidName && isValidEmail && isValidUserTickets {
-			remainingTickets = remainingTickets - userTickets
-			bookings = append(bookings, firstName+" "+lastName)
-
-			fmt.Printf("Thank you %v %v for booking %v tickets. Tickets will be sent to %v\n", firstName, lastName, userTickets, userEmail)
-			fmt.Printf("%v tickets are remaining for %v\n", remainingTickets, conferenceName)
-
-			printFirstNames(bookings)
+			bookTickets(remainingTickets, userTickets, bookings, firstName, lastName, userEmail, conferenceName)
+			firstNames := getFirstNames(bookings)
+			fmt.Printf("The first names of the bookings are: %v\n", firstNames)
 
 			if remainingTickets == 0 {
 				fmt.Printf("The %v is sold out\n", conferenceName)
@@ -88,7 +67,7 @@ func greetUsers(confName string, confTkts int, remTkts uint) {
 	fmt.Println("Get your tickets here to attend")
 }
 
-func printFirstNames(bookings []string) {
+func getFirstNames(bookings []string) []string {
 	firstNames := []string{}
 	// range returns index and the corresponding data from a slice
 	// if your code doesn't require the index variable (you can use any name for your index and value of course)
@@ -99,6 +78,39 @@ func printFirstNames(bookings []string) {
 		names := strings.Fields(booking)
 		firstNames = append(firstNames, names[0])
 	}
+	return firstNames
+}
 
-	fmt.Printf("The first names of the bookings are: %v\n", firstNames)
+func validateUserInput(firstName string, lastName string, userEmail string, userTickets uint, remainingTickets uint) (bool, bool, bool) {
+	isValidName := len(firstName) > 1 && len(lastName) > 1
+	isValidEmail := strings.Contains(userEmail, "@")
+	isValidUserTickets := userTickets > 0 && userTickets <= remainingTickets
+	return isValidName, isValidEmail, isValidUserTickets
+}
+
+func getUserInput() (string, string, string, uint) {
+	var firstName string
+	var lastName string
+	var userEmail string
+	var userTickets uint
+
+	// Scan can be used to get input from the user
+	// & is an address operator
+	fmt.Println("Enter your first name: ")
+	fmt.Scan(&firstName)
+	fmt.Println("Enter your last name: ")
+	fmt.Scan(&lastName)
+	fmt.Println("Enter your email: ")
+	fmt.Scan(&userEmail)
+	fmt.Println("Enter number of tickets: ")
+	fmt.Scan(&userTickets)
+	return firstName, lastName, userEmail, userTickets
+}
+
+func bookTickets(remainingTickets uint, userTickets uint, bookings []string, firstName string, lastName string, userEmail string, conferenceName string) {
+	remainingTickets = remainingTickets - userTickets
+	bookings = append(bookings, firstName+" "+lastName)
+
+	fmt.Printf("Thank you %v %v for booking %v tickets. Tickets will be sent to %v\n", firstName, lastName, userTickets, userEmail)
+	fmt.Printf("%v tickets are remaining for %v\n", remainingTickets, conferenceName)
 }
