@@ -8,30 +8,32 @@ import (
 // I'm following a youtube tutorial to develop a basic booking application
 // https://www.youtube.com/watch?v=yyUHQIec83I
 
+var conferenceName = "Go conference"
+
+const conferenceTickets int = 50
+
+var remainingTickets uint = 50
+
+// Following can be used to declare on array of fixed size
+// var bookings = [50]string{}
+// An alternate declaration of an expanding/contracting array called slice
+// Alternate slice declarations
+// bookings := []string
+// var bookings = []string{}
+var bookings []string
+
 func main() {
-	conferenceName := "Go conference"
-	const conferenceTickets int = 50
-	var remainingTickets uint = 50
-
-	// Following can be used to declare on array of fixed size
-	// var bookings = [50]string{}
-	// An alternate declaration of an expanding/contracting array called slice
-	var bookings []string
-	// Alternate slice declarations
-	// bookings := []string
-	// var bookings = []string{}
-
-	greetUsers(conferenceName, conferenceTickets, remainingTickets)
+	greetUsers()
 
 	// Loops introduction. We have just one type of loop in Go. For!
 	// This is an infinite loop
 	for {
 		firstName, lastName, userEmail, userTickets := getUserInput()
-		isValidName, isValidEmail, isValidUserTickets := validateUserInput(firstName, lastName, userEmail, userTickets, remainingTickets)
+		isValidName, isValidEmail, isValidUserTickets := validateUserInput(firstName, lastName, userEmail, userTickets)
 
 		if isValidName && isValidEmail && isValidUserTickets {
-			bookTickets(remainingTickets, userTickets, bookings, firstName, lastName, userEmail, conferenceName)
-			firstNames := getFirstNames(bookings)
+			bookTickets(userTickets, firstName, lastName, userEmail)
+			firstNames := getFirstNames()
 			fmt.Printf("The first names of the bookings are: %v\n", firstNames)
 
 			if remainingTickets == 0 {
@@ -52,7 +54,7 @@ func main() {
 	}
 }
 
-func greetUsers(confName string, confTkts int, remTkts uint) {
+func greetUsers() {
 	// %v format specifier is a generic one that can be used with multiple data types.
 	// %v prints values, %+v prints the field and value (think strcutures)
 	// %#v prints the struct along with field and value
@@ -62,12 +64,12 @@ func greetUsers(confName string, confTkts int, remTkts uint) {
 	// and space is added in between the arguments if neither of them are strings
 	// Print is same as Printf
 
-	fmt.Printf("Welcome to %v booking application\n", confName)
-	fmt.Printf("We have totol of %v tickets and we have %v tickets available\n", confTkts, remTkts)
+	fmt.Printf("Welcome to %v booking application\n", conferenceName)
+	fmt.Printf("We have totol of %v tickets and we have %v tickets available\n", conferenceTickets, remainingTickets)
 	fmt.Println("Get your tickets here to attend")
 }
 
-func getFirstNames(bookings []string) []string {
+func getFirstNames() []string {
 	firstNames := []string{}
 	// range returns index and the corresponding data from a slice
 	// if your code doesn't require the index variable (you can use any name for your index and value of course)
@@ -81,7 +83,7 @@ func getFirstNames(bookings []string) []string {
 	return firstNames
 }
 
-func validateUserInput(firstName string, lastName string, userEmail string, userTickets uint, remainingTickets uint) (bool, bool, bool) {
+func validateUserInput(firstName string, lastName string, userEmail string, userTickets uint) (bool, bool, bool) {
 	isValidName := len(firstName) > 1 && len(lastName) > 1
 	isValidEmail := strings.Contains(userEmail, "@")
 	isValidUserTickets := userTickets > 0 && userTickets <= remainingTickets
@@ -107,7 +109,7 @@ func getUserInput() (string, string, string, uint) {
 	return firstName, lastName, userEmail, userTickets
 }
 
-func bookTickets(remainingTickets uint, userTickets uint, bookings []string, firstName string, lastName string, userEmail string, conferenceName string) {
+func bookTickets(userTickets uint, firstName string, lastName string, userEmail string) {
 	remainingTickets = remainingTickets - userTickets
 	bookings = append(bookings, firstName+" "+lastName)
 
