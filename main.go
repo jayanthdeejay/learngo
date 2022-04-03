@@ -40,7 +40,7 @@ func main() {
 
 		if isValidName && isValidEmail && isValidUserTickets {
 			bookTickets(userTickets, firstName, lastName, userEmail)
-			sendTicket(userTickets, firstName, lastName, userEmail)
+			go sendTicket(userTickets, firstName, lastName, userEmail)
 			firstNames := getFirstNames()
 			fmt.Printf("The first names of the bookings are: %v\n", firstNames)
 
