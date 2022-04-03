@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 // I'm following a youtube tutorial to develop a basic booking application
 // https://www.youtube.com/watch?v=yyUHQIec83I
@@ -37,6 +40,7 @@ func main() {
 
 		if isValidName && isValidEmail && isValidUserTickets {
 			bookTickets(userTickets, firstName, lastName, userEmail)
+			sendTicket(userTickets, firstName, lastName, userEmail)
 			firstNames := getFirstNames()
 			fmt.Printf("The first names of the bookings are: %v\n", firstNames)
 
@@ -119,4 +123,12 @@ func bookTickets(userTickets uint, firstName string, lastName string, userEmail 
 
 	fmt.Printf("Thank you %v %v for booking %v tickets. Tickets will be sent to %v\n", firstName, lastName, userTickets, userEmail)
 	fmt.Printf("%v tickets are remaining for %v\n", remainingTickets, conferenceName)
+}
+
+func sendTicket(userTickets uint, firstName string, lastName string, userEmail string) {
+	time.Sleep(10 * time.Second)
+	var ticket = fmt.Sprintf("%v tickets for %v %v", userTickets, firstName, lastName)
+	fmt.Println("**************")
+	fmt.Printf("Sending ticket:\n%v to email address %v\n", ticket, userEmail)
+	fmt.Println("**************")
 }
