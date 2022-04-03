@@ -93,19 +93,3 @@ func main() {
 		}
 	}
 }
-
-// Understanding switch 
-city := "London"
-
-switch city {
-	case "New York":
-		// code for NY
-	case "Singapore", "London":
-		// code for Singapore or London. Multiple case consolidation
-	case "Berlin":
-		// code for Berlin
-	case "Mexico City", "Hong Kong":
-		// code for Mexico City or Hong Kong. Multiple cases
-	default:
-		fmt.Print("No valid city selected")
-}
