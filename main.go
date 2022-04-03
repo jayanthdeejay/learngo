@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"strings"
+	"strconv"
 )
 
 // I'm following a youtube tutorial to develop a basic booking application
@@ -20,7 +20,7 @@ var remainingTickets uint = 50
 // Alternate slice declarations
 // bookings := []string
 // var bookings = []string{}
-var bookings []string
+var bookings = make([]map[string]string, 0)
 
 func main() {
 	greetUsers()
@@ -77,8 +77,7 @@ func getFirstNames() []string {
 	// I think we are using strings.Fields to split booking data and get firstName here instead of the available
 	// firstName variable, just so we can learn a new conecpt. And nothing more.
 	for _, booking := range bookings {
-		names := strings.Fields(booking)
-		firstNames = append(firstNames, names[0])
+		firstNames = append(firstNames, booking["firstName"])
 	}
 	return firstNames
 }
@@ -104,7 +103,15 @@ func getUserInput() (string, string, string, uint) {
 
 func bookTickets(userTickets uint, firstName string, lastName string, userEmail string) {
 	remainingTickets = remainingTickets - userTickets
-	bookings = append(bookings, firstName+" "+lastName)
+	// Create a map for a user
+	var userData = make(map[string]string)
+	userData["firstName"] = firstName
+	userData["lastName"] = lastName
+	userData["userEmail"] = userEmail
+	userData["noOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)
+
+	bookings = append(bookings, userData)
+	fmt.Printf("List of bookings: %v\n", bookings)
 
 	fmt.Printf("Thank you %v %v for booking %v tickets. Tickets will be sent to %v\n", firstName, lastName, userTickets, userEmail)
 	fmt.Printf("%v tickets are remaining for %v\n", remainingTickets, conferenceName)
