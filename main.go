@@ -21,17 +21,7 @@ func main() {
 	// bookings := []string
 	// var bookings = []string{}
 
-	// %v format specifier is a generic one that can be used with multiple data types.
-	// %v prints values, %+v prints the field and value (think strcutures)
-	// %#v prints the struct along with field and value
-	// Println adds new line in the end. Also adds space in between it's arguments
-	// For example Println("hello", "world") -> "hello world"
-	// Printf same as Println, except it doesn't add new line in the end
-	// and space is added in between the arguments if neither of them are strings
-	// Print is same as Printf
-	fmt.Printf("Welcome to %v booking application\n", conferenceName)
-	fmt.Printf("We have totol of %v tickets and we have %v tickets available\n", conferenceTickets, remainingTickets)
-	fmt.Println("Get your tickets here to attend")
+	greetUsers(conferenceName, conferenceTickets, remainingTickets)
 
 	// Loops introduction. We have just one type of loop in Go. For!
 	// This is an infinite loop
@@ -63,18 +53,7 @@ func main() {
 			fmt.Printf("Thank you %v %v for booking %v tickets. Tickets will be sent to %v\n", firstName, lastName, userTickets, userEmail)
 			fmt.Printf("%v tickets are remaining for %v\n", remainingTickets, conferenceName)
 
-			firstNames := []string{}
-			// range returns index and the corresponding data from a slice
-			// if your code doesn't require the index variable (you can use any name for your index and value of course)
-			// you can instead use an underscore(_) so that the compiler doesn't complain about an unused variable
-			// I think we are using strings.Fields to split booking data and get firstName here instead of the available
-			// firstName variable, just so we can learn a new conecpt. And nothing more.
-			for _, booking := range bookings {
-				names := strings.Fields(booking)
-				firstNames = append(firstNames, names[0])
-			}
-
-			fmt.Printf("The first names of the bookings are: %v\n", firstNames)
+			printFirstNames(bookings)
 
 			if remainingTickets == 0 {
 				fmt.Printf("The %v is sold out\n", conferenceName)
@@ -92,4 +71,34 @@ func main() {
 			}
 		}
 	}
+}
+
+func greetUsers(confName string, confTkts int, remTkts uint) {
+	// %v format specifier is a generic one that can be used with multiple data types.
+	// %v prints values, %+v prints the field and value (think strcutures)
+	// %#v prints the struct along with field and value
+	// Println adds new line in the end. Also adds space in between it's arguments
+	// For example Println("hello", "world") -> "hello world"
+	// Printf same as Println, except it doesn't add new line in the end
+	// and space is added in between the arguments if neither of them are strings
+	// Print is same as Printf
+
+	fmt.Printf("Welcome to %v booking application\n", confName)
+	fmt.Printf("We have totol of %v tickets and we have %v tickets available\n", confTkts, remTkts)
+	fmt.Println("Get your tickets here to attend")
+}
+
+func printFirstNames(bookings []string) {
+	firstNames := []string{}
+	// range returns index and the corresponding data from a slice
+	// if your code doesn't require the index variable (you can use any name for your index and value of course)
+	// you can instead use an underscore(_) so that the compiler doesn't complain about an unused variable
+	// I think we are using strings.Fields to split booking data and get firstName here instead of the available
+	// firstName variable, just so we can learn a new conecpt. And nothing more.
+	for _, booking := range bookings {
+		names := strings.Fields(booking)
+		firstNames = append(firstNames, names[0])
+	}
+
+	fmt.Printf("The first names of the bookings are: %v\n", firstNames)
 }
