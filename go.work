@@ -1,0 +1,7 @@
+// This file is generated with following commands
+// go work init
+// go work use ./hello_world
+// source: https://github.com/golang/tools/blob/master/gopls/doc/workspace.md 
+go 1.19
+
+use ./hello_world
