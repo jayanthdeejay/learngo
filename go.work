@@ -4,5 +4,5 @@
 // source: https://github.com/golang/tools/blob/master/gopls/doc/workspace.md 
 go 1.19
 
-use ./hello_world
-use ./integers
+use ./LGT/hello_world
+use ./LGT/integers
